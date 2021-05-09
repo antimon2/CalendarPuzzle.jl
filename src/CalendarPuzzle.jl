@@ -166,7 +166,7 @@ end
 
 args2date() = Dates.today()
 args2date(dt::Date) = dt
-args2date(m::Int, d::Int) = Date(2021, m, d)
+args2date(m::Int, d::Int) = Date(2020, m, d)  # Must be leap year! 
 
 function printresultfn(io::IO)
     function (board)
