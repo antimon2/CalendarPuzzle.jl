@@ -19,6 +19,13 @@ $ julia --project -e "using CalendarPuzzle;CalendarPuzzle.solve()"
 
 ```
 
+## Solve All
+
+```bash
+$ mkdir -p answers
+$ julia --project -e "using CalendarPuzzle;CalendarPuzzle.outputallanswers(\"$(cd answers && pwd)\")"
+```
+
 ## Run Tests
 
 ```bash
