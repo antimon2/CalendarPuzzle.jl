@@ -16,7 +16,7 @@ function makeboard(
 )
     board = fill(-1, board_size)
     field_h, field_w = board_size .- (padding_bottom, padding_right)
-    board[1:field_h, 1:field_w] .=0
+    board[1:field_h, 1:field_w] .= 0
     for (x, y) in fldmod1.([28, 35, 42, 43, 44, 49], 7)
         board[y, x] = -1
     end
@@ -185,17 +185,16 @@ function solve_one(fn, board)
         solve_rec(board, first_pos, trues(length(PIECES))) do result
             put!(chnl, result)
         end
-        # FALLBACK
-        put!(chnl, Matrix{Int}(undef, 0, 0))
     end
     # 
+    try
     for result in chnl
-        if isempty(result)
-            println(stderr, "No Answers!")
-        else
             fn(result)
+            return
         end
-        break
+        println(stderr, "No Answers!")
+    finally
+        close(chnl)
     end
 end
 
@@ -209,7 +208,11 @@ function hasanswer(args...)
         end
     end
     # 1つでも解が見つかれば終了
+    try
     return !isnothing(iterate(chnl))
+    finally
+        close(chnl)
+    end
 end
 
 function countanswers(args...)
