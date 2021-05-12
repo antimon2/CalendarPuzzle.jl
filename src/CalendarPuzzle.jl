@@ -9,35 +9,6 @@ const BOARD_W = 8
 const PADDING_B = 1
 const PADDING_R = 1
 
-function makeboard(
-    board_size=(BOARD_H, BOARD_W),
-    padding_bottom=PADDING_B,
-    padding_right=PADDING_R
-)
-    board = fill(-1, board_size)
-    field_h, field_w = board_size .- (padding_bottom, padding_right)
-    board[1:field_h, 1:field_w] .= 0
-    for (x, y) in fldmod1.([28, 35, 42, 43, 44, 49], 7)
-        board[y, x] = -1
-    end
-    board
-end
-
-function makeboard(
-    dt::Date,
-    board_size=(BOARD_H, BOARD_W),
-    padding_bottom=PADDING_B,
-    padding_right=PADDING_R
-)
-    m, d = Dates.monthday(dt)
-    board = makeboard(board_size, padding_bottom, padding_right)
-    my, mx = fldmod1(m, 6)
-    dy, dx = fldmod1(d + 14, 7)
-    board[my, mx] = -1
-    board[dy, dx] = -1
-    board
-end
-
 const PIECES = [:O, :L, :P, :S, :U, :V, :Y, :Z]
 const PIECE_DATA = let dy=1, dx=BOARD_H
     Dict(
@@ -104,6 +75,35 @@ const PIECE_DATA = let dy=1, dx=BOARD_H
             cumsum([0, dx-2dy, dy, dy, dx-2dy]),
         ],
     )
+end
+
+function makeboard(
+    board_size=(BOARD_H, BOARD_W),
+    padding_bottom=PADDING_B,
+    padding_right=PADDING_R
+)
+    board = fill(-1, board_size)
+    field_h, field_w = board_size .- (padding_bottom, padding_right)
+    board[1:field_h, 1:field_w] .= 0
+    for (x, y) in fldmod1.([28, 35, 42, 43, 44, 49], 7)
+        board[y, x] = -1
+    end
+    board
+end
+
+function makeboard(
+    dt::Date,
+    board_size=(BOARD_H, BOARD_W),
+    padding_bottom=PADDING_B,
+    padding_right=PADDING_R
+)
+    m, d = Dates.monthday(dt)
+    board = makeboard(board_size, padding_bottom, padding_right)
+    my, mx = fldmod1(m, 6)
+    dy, dx = fldmod1(d + 14, 7)
+    board[my, mx] = -1
+    board[dy, dx] = -1
+    board
 end
 
 function printboard(io::IO, board::AbstractMatrix, padding_bottom=PADDING_B, padding_right=PADDING_R)
