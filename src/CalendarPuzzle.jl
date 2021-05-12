@@ -43,7 +43,7 @@ const PIECE_DATA = let dy=1, dx=BOARD_H
     Dict(
         :O => [
             cumsum([0, dy, dy, dx-2dy, dy, dy]),
-            cumsum([0, dx, dx, dy-2dx, dx, dx])
+            cumsum([0, dy, dx-dy, dy, dx-dy, dy]),
         ],
         :L => [
             cumsum([0, dy, dy, dy, dx]),
@@ -51,19 +51,19 @@ const PIECE_DATA = let dy=1, dx=BOARD_H
             cumsum([0, dx, dy, dy, dy]),
             cumsum([0, dx-3dy, dy, dy, dy]),
             cumsum([0, dx, dx, dx, dy]),
-            cumsum([0, dx, dx, dx, dy-3dx]),
+            cumsum([0, dy, dx-dy, dx, dx]),
             cumsum([0, dy, dx, dx, dx]),
-            cumsum([0, dx, dx, dx, -dy]),
+            cumsum([0, dx, dx, dx-dy, dy]),
         ],
         :P => [
             cumsum([0, dy, dy, dx-2dy, dy]),
             cumsum([0, dy, dy, dx-dy, dy]),
             cumsum([0, dy, dx-dy, dy, dy]),
             cumsum([0, dy, dx-2dy, dy, dy]),
-            cumsum([0, dx, dx, dy-2dx, dx]),
-            cumsum([0, dx, dx, dy-dx, dx]),
-            cumsum([0, dx, dy-dx, dx, dx]),
-            cumsum([0, dx, dx, -dy-dx, dx]),
+            cumsum([0, dy, dx-dy, dy, dx-dy]),
+            cumsum([0, dx, dy, dx-dy, dy]),
+            cumsum([0, dy, dx-dy, dy, dx]),
+            cumsum([0, dx-dy, dy, dx-dy, dy]),
         ],
         :S => [
             cumsum([0, dy, dx, dy, dy]),
@@ -72,37 +72,37 @@ const PIECE_DATA = let dy=1, dx=BOARD_H
             cumsum([0, dy, dy, dx-3dy, dy]),
             cumsum([0, dx, dy, dx, dx]),
             cumsum([0, dx, dx, dy, dx]),
-            cumsum([0, dx, -dy, dx, dx]),
-            cumsum([0, dx, dx, -dy, dx]),
+            cumsum([0, dx-dy, dy, dx-dy, dx]),
+            cumsum([0, dx, dx-dy, dy, dx-dy]),
         ],
         :U => [
             cumsum([0, dy, dy, dx-2dy, 2dy]),
             cumsum([0, 2dy, dx-2dy, dy, dy]),
-            cumsum([0, dx, dx, dy-2dx, 2dx]),
-            cumsum([0, 2dx, dy-2dx, dx, dx]),
+            cumsum([0, dy, dx-dy, dx, dy]),
+            cumsum([0, dy, dx, dx-dy, dy]),
         ],
         :V => [
             cumsum([0, dy, dy, dx, dx]),
             cumsum([0, dy, dy, dx-2dy, dx]),
             cumsum([0, dx, dx, dy, dy]),
-            cumsum([0, dx, dx, -dy, -dy]),
+            cumsum([0, dx, dx-2dy, dy, dy]),
         ],
         :Y => [
             cumsum([0, dy, dy, dy, dx-2dy]),
             cumsum([0, dy, dy, dy, dx-dy]),
             cumsum([0, dx-dy, dy, dy, dy]),
             cumsum([0, dx-2dy, dy, dy, dy]),
-            cumsum([0, dx, dx, dx, dy-2dx]),
-            cumsum([0, dx, dx, dx, dy-dx]),
-            cumsum([0, dx, dx, dx, -dy-2dx]),
-            cumsum([0, dx, dx, dx, -dy-dx]),
+            cumsum([0, dx, dy, dx-dy, dx]),
+            cumsum([0, dx, dx, dy, dx-dy]),
+            cumsum([0, dx-dy, dy, dx, dx]),
+            cumsum([0, dx, dx-dy, dy, dx]),
         ],
         :Z => [
             cumsum([0, dy, dx, dx, dy]),
-            cumsum([0, dy, dx-dy, dx, -dy]),
+            cumsum([0, dy, dx-dy, dx-dy, dy]),
             cumsum([0, dx, dy, dy, dx]),
-            cumsum([0, dx, -dy, -dy, dx]),
-        ]
+            cumsum([0, dx-2dy, dy, dy, dx-2dy]),
+        ],
     )
 end
 
