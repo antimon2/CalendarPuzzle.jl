@@ -188,7 +188,7 @@ function solve_one(fn, board)
     end
     # 
     try
-    for result in chnl
+        for result in chnl
             fn(result)
             return
         end
@@ -209,7 +209,7 @@ function hasanswer(args...)
     end
     # 1つでも解が見つかれば終了
     try
-    return !isnothing(iterate(chnl))
+        return !isnothing(iterate(chnl))
     finally
         close(chnl)
     end
