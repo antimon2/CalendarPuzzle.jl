@@ -4,10 +4,10 @@ module CalendarPuzzle
 
 using Dates
 
-const BOARD_H = 10
-const BOARD_W = 10
-const PADDING_B = 3
-const PADDING_R = 3
+const BOARD_H = 8
+const BOARD_W = 8
+const PADDING_B = 1
+const PADDING_R = 1
 
 function makeboard(
     board_size=(BOARD_H, BOARD_W),
@@ -129,7 +129,7 @@ function printboard(io::IO, board::AbstractMatrix, padding_bottom=PADDING_B, pad
     end
 end
 
-availablepiece(board, pos, piece) = all(board[piece .+ pos] .== 0)
+availablepiece(board, pos, piece) = all(board[pos + idx] == 0 for idx in piece)
 
 function putpiece(board, pos, piece, pidx)
     newboard = copy(board)
